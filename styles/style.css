@@ -1,104 +1,94 @@
-/* Add this to styles/style.css */
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: #f0f0f5; /* Light gray background for a clean look */
-  color: #333; /* Slightly dark text for readability */
-}
-
-.ticket-container {
+/* --- Fullscreen background --- */
+.home-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: rgba(0, 0, 0, 0.3); /* Dark transparent background */
-  backdrop-filter: blur(15px); /* Frosted glass effect */
-  padding: 20px;
+  height: 100vh;
+  background: #0d0d0d; /* Dark mode */
 }
 
-h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 600;
+/* --- Start Ticket Button --- */
+.start-ticket-button {
+  padding: 20px 50px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-transform: uppercase;
   color: white;
-  margin-bottom: 30px;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Light shadow to make text pop */
-}
-
-.ticket-form {
-  background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque white background */
-  padding: 40px;
+  border: none;
   border-radius: 12px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  background: linear-gradient(135deg, #6a5acd, #ff4500);
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-.ticket-label {
-  display: block;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  font-weight: 500;
-  color: #555; /* Slightly dark text */
+.start-ticket-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
 }
 
+/* --- Ticket Form (Frosted Glass) --- */
+.ticket-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+  width: 400px;
+  color: white;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* --- Form Inputs --- */
 .ticket-input,
 .ticket-textarea {
   width: 100%;
-  padding: 15px;
-  margin-bottom: 20px;
-  background-color: #f0f0f5;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
   font-size: 1rem;
-  color: #333;
-  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 10px;
+  color: white;
   transition: all 0.3s ease;
 }
 
 .ticket-input:focus,
 .ticket-textarea:focus {
   outline: none;
-  border-color: #0066cc; /* Light blue focus for inputs */
+  background: rgba(255, 255, 255, 0.3);
 }
 
-.ticket-button {
-  background: linear-gradient(135deg, #ff5c8f, #ff5c8f);
-  border: none;
-  padding: 15px 30px;
-  border-radius: 8px;
-  font-size: 1.2rem;
+/* --- Submit Button (🔥 Glowing Effect) --- */
+.submit-button {
+  margin-top: 20px;
+  padding: 15px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ff4500, #6a5acd);
   color: white;
-  width: 100%;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the button */
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.5);
+  transition: all 0.3s ease-in-out;
 }
 
-.ticket-button:hover {
-  transform: scale(1.05); /* Slightly enlarge on hover */
-  background: linear-gradient(135deg, #ff4081, #ff4081); /* Brighter button color */
+.submit-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.8);
 }
 
-.ticket-button:active {
-  transform: scale(1); /* Button returns to normal size when clicked */
-  background: linear-gradient(135deg, #e60073, #e60073); /* Darker button color when clicked */
-}
-
-.ticket-input::placeholder,
-.ticket-textarea::placeholder {
-  color: #bbb; /* Light placeholder text */
-}
-
-/* For mobile devices */
-@media (max-width: 600px) {
-  .ticket-form {
-    padding: 25px;
+/* --- Fade-in animation --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-
-  h1 {
-    font-size: 2rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
