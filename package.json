@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "next": "^12.0.0", // or the latest version of Next.js
-    "react": "^17.0.0", // or the appropriate version
-    "react-dom": "^17.0.0" // or the appropriate version
+    "next": "^12.0.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
   }
 }
