@@ -1,65 +1,104 @@
-/* styles/style.css */
-
-/* Basic reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Add this to styles/style.css */
 
 body {
-  background-color: #121212;
-  font-family: Arial, sans-serif;
-  color: #fff;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #f0f0f5; /* Light gray background for a clean look */
+  color: #333; /* Slightly dark text for readability */
+}
+
+.ticket-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-}
-
-.container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.content {
-  background: rgba(255, 255, 255, 0.1); /* Light glass effect */
-  border-radius: 20px;
-  padding: 40px;
-  text-align: center;
-  backdrop-filter: blur(10px); /* Frosted glass effect */
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-  width: 90%;
-  max-width: 600px;
+  background: rgba(0, 0, 0, 0.3); /* Dark transparent background */
+  backdrop-filter: blur(15px); /* Frosted glass effect */
+  padding: 20px;
 }
 
 h1 {
-  font-size: 36px;
-  color: #fff;
-  margin-bottom: 20px;
-}
-
-p {
-  font-size: 18px;
-  margin-bottom: 30px;
-}
-
-button {
-  background-color: #ff5c8f;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
   color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 15px 30px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Light shadow to make text pop */
 }
 
-button:hover {
-  background-color: #f56b9a; /* Lighter shade of pink */
+.ticket-form {
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque white background */
+  padding: 40px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.ticket-label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #555; /* Slightly dark text */
+}
+
+.ticket-input,
+.ticket-textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #f0f0f5;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.ticket-input:focus,
+.ticket-textarea:focus {
+  outline: none;
+  border-color: #0066cc; /* Light blue focus for inputs */
+}
+
+.ticket-button {
+  background: linear-gradient(135deg, #ff5c8f, #ff5c8f);
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for the button */
+}
+
+.ticket-button:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  background: linear-gradient(135deg, #ff4081, #ff4081); /* Brighter button color */
+}
+
+.ticket-button:active {
+  transform: scale(1); /* Button returns to normal size when clicked */
+  background: linear-gradient(135deg, #e60073, #e60073); /* Darker button color when clicked */
+}
+
+.ticket-input::placeholder,
+.ticket-textarea::placeholder {
+  color: #bbb; /* Light placeholder text */
+}
+
+/* For mobile devices */
+@media (max-width: 600px) {
+  .ticket-form {
+    padding: 25px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
 }
