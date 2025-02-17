@@ -1,13 +1,16 @@
-/* --- Fullscreen background --- */
-.home-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #0d0d0d; /* Dark mode */
+/* --- Use Apple's System Font --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background: #0d0d0d; /* Dark mode */
+    color: white;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-/* --- Start Ticket Button --- */
+/* --- Start Ticket Button (3D Effect) --- */
 .start-ticket-button {
   padding: 20px 50px;
   font-size: 1.6rem;
@@ -17,37 +20,41 @@
   border: none;
   border-radius: 12px;
   background: linear-gradient(135deg, #6a5acd, #ff4500);
-  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
 .start-ticket-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+  box-shadow: 0 8px 25px rgba(255, 69, 0, 0.8);
 }
 
-/* --- Ticket Form (Frosted Glass) --- */
+.start-ticket-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+}
+
+/* --- Ticket Form (Better Frosted Glass) --- */
 .ticket-form {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
   padding: 40px;
   border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
   width: 400px;
-  color: white;
   text-align: center;
   animation: fadeIn 0.4s ease-in-out;
 }
 
-/* --- Form Inputs --- */
+/* --- Input Fields (Smoother Look) --- */
 .ticket-input,
 .ticket-textarea {
   width: 100%;
   padding: 12px;
   margin-top: 12px;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   border: none;
   border-radius: 10px;
   color: white;
@@ -57,10 +64,10 @@
 .ticket-input:focus,
 .ticket-textarea:focus {
   outline: none;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.25);
 }
 
-/* --- Submit Button (🔥 Glowing Effect) --- */
+/* --- Submit Button (🔥 Apple-Like Glow) --- */
 .submit-button {
   margin-top: 20px;
   padding: 15px;
@@ -72,16 +79,21 @@
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.5);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.7);
   transition: all 0.3s ease-in-out;
 }
 
 .submit-button:hover {
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.8);
+  box-shadow: 0 8px 25px rgba(255, 69, 0, 0.9);
 }
 
-/* --- Fade-in animation --- */
+.submit-button:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.5);
+}
+
+/* --- Fade-in animation (Smooth) --- */
 @keyframes fadeIn {
   from {
     opacity: 0;
