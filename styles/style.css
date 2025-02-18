@@ -1,37 +1,61 @@
-/* --- Global Styles for a Futuristic Feel --- */
+/* Importing the font for a smooth Apple-like feel */
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+/* --- Global Styles --- */
 body {
   font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: radial-gradient(circle, rgba(24, 24, 24, 1) 0%, rgba(8, 8, 8, 1) 100%); /* Dark gradient */
-  color: white;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  background: #0d0d0d; /* Dark background */
+  color: white; /* Light text */
+  overflow: hidden; /* Hide scrollbars */
+  position: relative;
 }
 
-/* --- Fullscreen Background Effect --- */
+/* --- 3D Cube Floating Animation --- */
+@keyframes cubeAnimation {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(200px, 150px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.cube {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(45deg, #6a5acd, #ff4500);
+  animation: cubeAnimation 6s ease-in-out infinite;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+}
+
+.cube:nth-child(odd) {
+  animation-duration: 6s;
+  background: linear-gradient(45deg, #ff4500, #6a5acd);
+}
+
+.cube:nth-child(even) {
+  animation-duration: 4s;
+  background: linear-gradient(45deg, #6a5acd, #ff4500);
+}
+
+/* --- Fullscreen Home Container (Centering everything) --- */
 .home-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  perspective: 1000px; /* Adds depth */
+  position: relative;
+  overflow: hidden;
 }
 
-/* --- Frosted Glass Ticket Form with 3D Effects --- */
-.ticket-form {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  padding: 40px;
-  border-radius: 25px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-  width: 450px;
-  color: white;
-  text-align: center;
-  animation: fadeIn 0.6s ease-in-out;
-  transform: rotateX(10deg); /* 3D tilt */
-}
-
-/* --- 3D Buttons (Hover Effects) --- */
+/* --- Start Ticket Button with a Glowing Gradient --- */
 .start-ticket-button {
   padding: 20px 50px;
   font-size: 1.8rem;
@@ -39,84 +63,83 @@ body {
   text-transform: uppercase;
   color: white;
   border: none;
-  border-radius: 15px;
-  background: linear-gradient(45deg, #ff007f, #00d2ff); /* Neon gradient */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6a5acd, #ff4500);
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  transform: translateY(0); /* Normal position */
+  position: relative;
+  z-index: 3;
 }
 
 .start-ticket-button:hover {
-  transform: translateY(-5px) scale(1.1); /* 3D hover effect */
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-  background: linear-gradient(45deg, #ff007f, #00d2ff, #6e00ff);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
 }
 
-/* --- Input Fields with a 3D Look --- */
+/* --- 3D Ticket Form (Frosted Glass) --- */
+.ticket-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+  width: 400px;
+  color: white;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+  z-index: 2;
+  position: relative;
+}
+
+/* --- 3D Effects on Input Fields --- */
 .ticket-input,
 .ticket-textarea {
   width: 100%;
-  padding: 14px;
-  margin-top: 20px;
-  font-size: 1.2rem;
+  padding: 12px;
+  margin-top: 12px;
+  font-size: 1.1rem;
   background: rgba(255, 255, 255, 0.2);
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease;
+  transform: perspective(200px) rotateY(0deg);
 }
 
 .ticket-input:focus,
 .ticket-textarea:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); /* Focus glow */
+  transform: perspective(200px) rotateY(5deg);
 }
 
-/* --- Submit Button with Glowing & 3D Effect --- */
+/* --- 3D Submit Button with Glowing Effect --- */
 .submit-button {
-  margin-top: 25px;
-  padding: 18px;
-  font-size: 1.5rem;
+  margin-top: 20px;
+  padding: 15px;
+  font-size: 1.3rem;
   font-weight: bold;
   text-transform: uppercase;
-  background: linear-gradient(45deg, #ff4500, #6a5acd);
+  background: linear-gradient(135deg, #ff4500, #6a5acd);
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(255, 69, 0, 0.5);
-  transition: all 0.4s ease-in-out;
-  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.5);
+  transition: all 0.3s ease-in-out;
 }
 
 .submit-button:hover {
-  transform: translateY(-5px) scale(1.1);
-  box-shadow: 0 12px 35px rgba(255, 69, 0, 0.6);
-  background: linear-gradient(45deg, #ff4500, #6a5acd, #ff007f);
-  animation: glowing 1.5s infinite; /* Glowing effect */
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 69, 0, 0.8);
 }
 
-/* --- Glowing Animation for the Button --- */
-@keyframes glowing {
-  0% {
-    box-shadow: 0 0 15px #ff007f, 0 0 30px #ff007f;
-  }
-  50% {
-    box-shadow: 0 0 25px #ff4500, 0 0 50px #ff4500;
-  }
-  100% {
-    box-shadow: 0 0 15px #ff007f, 0 0 30px #ff007f;
-  }
-}
-
-/* --- Fade-in Animation for the Form --- */
+/* --- Fade-in animation for form --- */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateY(-20px);
   }
   to {
     opacity: 1;
@@ -124,12 +147,132 @@ body {
   }
 }
 
-/* --- Input Fields Focus Animation --- */
-@keyframes inputFocus {
-  from {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+/* --- Floating Info Icon with hover effect --- */
+.info-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 69, 0, 0.8);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
+  z-index: 4;
+}
+
+.info-icon svg {
+  fill: white;
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s;
+}
+
+.info-icon:hover svg {
+  transform: rotate(45deg);
+}
+
+/* --- Floating Cube Animations --- */
+.cube:nth-child(odd) {
+  animation-duration: 6s;
+  background: linear-gradient(45deg, #ff4500, #6a5acd);
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+}
+
+.cube:nth-child(even) {
+  animation-duration: 4s;
+  background: linear-gradient(45deg, #6a5acd, #ff4500);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.cube {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(45deg, #6a5acd, #ff4500);
+  animation: cubeAnimation 5s ease-in-out infinite;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+  z-index: 1;
+}
+
+/* --- Animation when hovering over the appeal box --- */
+.ticket-form:hover {
+  transform: perspective(800px) rotateX(10deg) rotateY(10deg);
+}
+
+/* --- Background Movement --- */
+@keyframes backgroundMove {
+  0% {
+    transform: translateX(0);
   }
-  to {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  50% {
+    transform: translateX(-100px);
   }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* --- Glowing 3D Border Effect on Ticket Button --- */
+.start-ticket-button {
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, #6a5acd, #ff4500);
+  background-clip: padding-box;
+  position: relative;
+  z-index: 2;
+  transition: background-color 0.5s ease, border 0.5s ease;
+}
+
+.start-ticket-button:hover {
+  background-color: #ffffff;
+  border-color: #ff4500;
+  box-shadow: 0 4px 15px rgba(255, 69, 0, 0.7);
+}
+
+.start-ticket-button:active {
+  transform: scale(0.95);
+}
+
+/* --- Slight color animations on form inputs --- */
+.ticket-input:focus,
+.ticket-textarea:focus {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 69, 0, 0.8);
+}
+
+.ticket-input,
+.ticket-textarea {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  border: 2px solid transparent;
+  color: white;
+  padding: 12px;
+  transition: all 0.2s ease;
+}
+
+/* --- Tooltip for Info Icon --- */
+.info-tooltip {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background-color: rgba(255, 69, 0, 0.8);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(255, 69, 0, 0.6);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.info-icon:hover + .info-tooltip {
+  opacity: 1;
+  transform: translateY(0);
 }
