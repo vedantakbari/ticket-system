@@ -1,57 +1,49 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export default function Home() {
-  const [ticket, setTicket] = useState({
-    name: "",
-    email: "",
-    issue: "",
-  });
+function TicketForm() {
+  const [ticketMessage, setTicketMessage] = useState(''); // Save message typed by user
 
-  const handleChange = (e) => {
-    setTicket({ ...ticket, [e.target.name]: e.target.value });
-  };
+  // This function sends the message to the server
+  const submitTicket = async (message) => {
+    // Send message to your backend server (the webhook)
+    const res = await fetch('/api/webhook', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // We are sending JSON data
+      },
+      body: JSON.stringify({ message }), // Send the message as JSON
+    });
 
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents page refresh
-    console.log("Ticket Submitted:", ticket);
-    alert("🎟️ Ticket Submitted! We will get back to you soon.");
-    // You can later send this data to an API
+    const data = await res.json(); // Get the response from the server
+
+    if (res.ok) {
+      alert('Ticket submitted successfully!'); // Success message
+    } else {
+      alert('Failed to submit ticket.'); // Error message if it fails
+    }
   };
 
   return (
+    <div className="ticket-form">
+      <h2>Submit Your Ticket</h2>
+      {/* The text area where user types their message */}
+      <textarea
+        value={ticketMessage}
+        onChange={(e) => setTicketMessage(e.target.value)} // Update message as user types
+        placeholder="Enter your message here"
+        className="ticket-input"
+      />
+      
+      {/* Button to submit the ticket */}
+      <button onClick={() => submitTicket(ticketMessage)} className="submit-button">Submit Ticket</button>
+    </div>
+  );
+}
+
+export default function Home() {
+  return (
     <div className="home-container">
-      <div className="ticket-form">
-        <h2>Submit a Ticket</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            className="ticket-input"
-            value={ticket.name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            className="ticket-input"
-            value={ticket.email}
-            onChange={handleChange}
-            required
-          />
-          <textarea
-            name="issue"
-            placeholder="Describe your issue..."
-            className="ticket-textarea"
-            value={ticket.issue}
-            onChange={handleChange}
-            required
-          />
-          <button type="submit" className="submit-button">Submit Ticket</button>
-        </form>
-      </div>
+      <TicketForm />  {/* Display the form to submit tickets */}
     </div>
   );
 }
