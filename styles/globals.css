@@ -1,0 +1,75 @@
+/* --- Floating Cube Styles --- */
+@keyframes cubeAnimation {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(200px, 150px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.cube {
+  position: absolute;
+  background: linear-gradient(45deg, #6a5acd, #ff4500);
+  border-radius: 10px;
+  animation: cubeAnimation 6s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+}
+
+/* Cube variations for even and odd cubes */
+.cube:nth-child(odd) {
+  animation-duration: 6s;
+  background: linear-gradient(45deg, #ff4500, #6a5acd);
+}
+
+.cube:nth-child(even) {
+  animation-duration: 4s;
+  background: linear-gradient(45deg, #6a5acd, #ff4500);
+}
+
+/* Styling for ticket form */
+.ticket-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+  z-index: 1000;
+  width: 300px;
+}
+
+.ticket-form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-form-container textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  resize: none;
+}
+
+.ticket-form-container button {
+  padding: 10px;
+  border-radius: 5px;
+  background: #ff4500;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.ticket-form-container button:disabled {
+  background: #ccc;
+}
+
+.ticket-form-container p {
+  color: #fff;
+  text-align: center;
+}

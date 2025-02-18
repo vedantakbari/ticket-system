@@ -1,49 +1,52 @@
 import { useState } from 'react';
 
-function TicketForm() {
-  const [ticketMessage, setTicketMessage] = useState(''); // Save message typed by user
+export default function Home() {
+  const [showForm, setShowForm] = useState(false);
+  const [message, setMessage] = useState('');
 
-  // This function sends the message to the server
-  const submitTicket = async (message) => {
-    // Send message to your backend server (the webhook)
-    const res = await fetch('/api/webhook', {
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch('/api/webhook', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', // We are sending JSON data
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ message }), // Send the message as JSON
+      body: JSON.stringify({ message }),
     });
 
-    const data = await res.json(); // Get the response from the server
-
-    if (res.ok) {
-      alert('Ticket submitted successfully!'); // Success message
-    } else {
-      alert('Failed to submit ticket.'); // Error message if it fails
-    }
+    const data = await response.json();
+    alert(data.message);
   };
 
   return (
-    <div className="ticket-form">
-      <h2>Submit Your Ticket</h2>
-      {/* The text area where user types their message */}
-      <textarea
-        value={ticketMessage}
-        onChange={(e) => setTicketMessage(e.target.value)} // Update message as user types
-        placeholder="Enter your message here"
-        className="ticket-input"
-      />
-      
-      {/* Button to submit the ticket */}
-      <button onClick={() => submitTicket(ticketMessage)} className="submit-button">Submit Ticket</button>
-    </div>
-  );
-}
+    <div>
+      <div className="home-container">
+        <button className="start-ticket-button" onClick={() => setShowForm(true)}>
+          Start a Ticket
+        </button>
 
-export default function Home() {
-  return (
-    <div className="home-container">
-      <TicketForm />  {/* Display the form to submit tickets */}
+        {showForm && (
+          <form onSubmit={handleFormSubmit} className="ticket-form">
+            <h2>Ticket Submission</h2>
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="ticket-textarea"
+              placeholder="Enter your ticket message here"
+              required
+            />
+            <button type="submit" className="submit-button">
+              Submit Ticket
+            </button>
+          </form>
+        )}
+      </div>
+
+      <div id="cube-container">
+        <div className="cube"></div>
+        <div className="cube"></div>
+        <div className="cube"></div>
+      </div>
     </div>
   );
 }
