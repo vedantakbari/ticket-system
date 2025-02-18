@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const { message } = req.body;
 
     // Your Discord Webhook URL
-    const webhookURL = 'YOUR_DISCORD_WEBHOOK_URL';
+    const webhookURL = 'https://discord.com/api/webhooks/1341198386329686068/t2k5YFuTJewjljUYxaOh1YOvGpai5z6Ghibqf0voIaFy8oZ8Aneuyv5pqRWGhkyu4LZ5';
     
     // Create the ticket number (padded to 4 digits, like 0001, 0002, ...)
     const formattedTicketNumber = String(ticketNumber).padStart(4, '0');
