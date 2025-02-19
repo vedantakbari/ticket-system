@@ -1,33 +1,43 @@
+// pages/api/webhook.js
+
 import fetch from 'node-fetch';
 
+const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1341198386329686068/t2k5YFuTJewjljUYxaOh1YOvGpai5z6Ghibqf0voIaFy8oZ8Aneuyv5pqRWGhkyu4LZ5";
+let ticketCounter = 1;
+
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { message } = req.body;
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: "Method not allowed." });
+  }
 
-    // Your Discord Webhook URL
-    const webhookURL = 'https://discord.com/api/webhooks/1341198386329686068/t2k5YFuTJewjljUYxaOh1YOvGpai5z6Ghibqf0voIaFy8oZ8Aneuyv5pqRWGhkyu4LZ5';
+  const { username, reason } = req.body;
+  if (!username || !reason) {
+    return res.status(400).json({ message: "Missing username or reason." });
+  }
 
-    const payload = {
-      content: `New Ticket: ${message}`,
-    };
+  const ticketID = `ticket-${String(ticketCounter).padStart(4, '0')}`;
+  ticketCounter++;
 
-    try {
-      const response = await fetch(webhookURL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+  const embed = {
+    title: "New Support Ticket",
+    color: 5814783,
+    fields: [
+      { name: "Ticket ID", value: ticketID, inline: true },
+      { name: "Opened By", value: username, inline: true },
+      { name: "Reason", value: reason, inline: false }
+    ],
+    timestamp: new Date().toISOString(),
+  };
 
-      if (response.ok) {
-        return res.status(200).json({ message: 'Ticket submitted successfully.' });
-      } else {
-        return res.status(500).json({ message: 'Failed to send ticket to Discord.' });
-      }
-    } catch (error) {
-      console.error('Error sending webhook:', error);
-      return res.status(500).json({ message: 'Error occurred.' });
-    }
-  } else {
-    res.status(405).json({ message: 'Method not allowed.' });
+  try {
+    await fetch(DISCORD_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ embeds: [embed] })
+    });
+
+    res.status(200).json({ message: "Ticket created successfully.", ticketID });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to send webhook.", error: error.message });
   }
 }
